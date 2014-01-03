@@ -1,0 +1,26 @@
+<% title "Products" %>
+
+<table class="pretty">
+  <tr>
+    <!-- method -1
+    <th><%#= link_to "name", :sort => "name" %></th>
+    <th><%#= link_to "price" ,:sort => "price"%></th>
+    <th><%#= link_to "released_at", :sort =>"released_at" %></th>
+
+ -->
+    <!-- method -2  -->
+    <th><%= sortable "name" ,"name"%></th>
+    <th><%= sortable "price" ,"price"%></th>
+    <th><%= sortable "released_at", "Released" %></th>
+    </tr>
+
+  <% for product in @products %>
+    <tr>
+      <td><%= product.name %></td>
+      <td class="price"><%= number_to_currency(product.price) %></td>
+      <td><%= product.released_at.strftime("%B %e, %Y") %></td>
+    </tr>
+  <% end %>
+</table>
+
+<p><%= link_to "New Product", new_product_path %></p>
